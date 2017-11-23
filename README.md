@@ -7,4 +7,5 @@ The original ppgplot implementation is by Nick Patavalis (https://github.com/npa
 
 # Installation
 
-First install *pgplot* (http://www.astro.caltech.edu/~tjp/pgplot/) using `gfortran` as the Fortran compiler. Then set the PGPLOT_DIR environment variable.
+First install *pgplot* (http://www.astro.caltech.edu/~tjp/pgplot/) using `gfortran` as the Fortran compiler. Then set the PGPLOT_DIR environment variable. Once *pgplot* is installed, install *ppgplot* with
+  python setup.py install
