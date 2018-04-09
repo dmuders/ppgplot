@@ -61,6 +61,8 @@ static PyObject *PpgIOErr;
 static PyObject *PpgTYPEErr;
 static PyObject *PpgMEMErr;
 
+float xcurs=0.0, ycurs=0.0;
+
 /**************************************************************************/
 /*                          support functions                             */
 /**************************************************************************/
@@ -1004,22 +1006,22 @@ PYF(pgunsa)
 
 PYF(pgcurs)
 {
-    float x=0.0, y=0.0;
+  //    float x=0.0, y=0.0;
     char ch = '\0';
 
-    if (!PyArg_ParseTuple(args,"|ff:pgcurs",&x, &y))
+    if (!PyArg_ParseTuple(args,"|ff:pgcurs",&xcurs, &ycurs))
 		return(NULL);
 
-    cpgcurs(&x,&y,&ch);
+    cpgcurs(&xcurs,&ycurs,&ch);
 
-    return(Py_BuildValue("ffc",x,y,ch));
+    return(Py_BuildValue("ffc",xcurs,ycurs,ch));
 }
 
 
 PYF(pgband)
 {
     int mode=7, i=0;
-    float xref = 0.0, yref = 0.0, x=0.0, y=0.0;
+    float xref = 0.0, yref = 0.0; //, x=0.0, y=0.0;
     char ch = '\0';
 
     if (!PyArg_ParseTuple(args,"i|iff:pgband",
@@ -1027,9 +1029,9 @@ PYF(pgband)
 		return(NULL);
 
 
-    cpgband(mode,i,xref,yref,&x,&y,&ch);
+    cpgband(mode,i,xref,yref,&xcurs,&ycurs,&ch);
 
-    return(Py_BuildValue("ffc",x,y,ch));
+    return(Py_BuildValue("ffc",xcurs,ycurs,ch));
 }
 
 PYF(pgqcol)
