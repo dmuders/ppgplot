@@ -47,4 +47,5 @@ setup(name="ppgplot",
       author_email="",
       packages=['ppgplot'],
       package_dir={'ppgplot':'src'},
+      install_requires=['numpy'],
       ext_modules=[ext_ppgplot])
