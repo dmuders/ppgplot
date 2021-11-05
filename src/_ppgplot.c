@@ -439,7 +439,7 @@ PYF(pgqtxt)
 	PyObject* ret;
 	int i;
 
-	if(!PyArg_ParseTuple(args, "ffffs", &x, &y, &angle, &fjust, &text))
+	if(!PyArg_ParseTuple(args, "ffffy", &x, &y, &angle, &fjust, &text))
 		return NULL;
 	cpgqtxt(x, y, angle, fjust, text, b1, b2);
 	for(i = 0; i < 4; i++)
@@ -1187,7 +1187,7 @@ PYF(pglen)
     int units=4;
     float xltxt, yltxt;
 
-    if (!PyArg_ParseTuple(args,"s|i:pglen", &text, &units))
+    if (!PyArg_ParseTuple(args,"y|i:pglen", &text, &units))
 		return(NULL);
 
     cpglen(units, text, &xltxt, &yltxt);
@@ -1211,7 +1211,7 @@ PYF(pglab)
 {
     char *xl=DEF_XLABEL, *yl=DEF_YLABEL, *pl=DEF_PLOTLABEL;
 
-    if (!PyArg_ParseTuple(args,"|sss:pglab",&xl,&yl,&pl))
+    if (!PyArg_ParseTuple(args,"|yyy:pglab",&xl,&yl,&pl))
 		return(NULL);
 
     cpglab(xl,yl,pl);
@@ -1229,7 +1229,7 @@ PYF(pgmtxt)
 		coord = 0.5,
 		fjust = 0.5;
 
-    if (!PyArg_ParseTuple(args,"sfffs:pglab",&side,&disp,&coord,&fjust,
+    if (!PyArg_ParseTuple(args,"sfffy:pgmtxt",&side,&disp,&coord,&fjust,
 						  &text))
 		return(NULL);
     
@@ -1243,7 +1243,7 @@ PYF(pgtext)
     float x = 0.0, y=0.0;
     char *string = "ppgplot";
     
-    if (!PyArg_ParseTuple(args,"ffs:pgtext", &x, &y, &string)) return(NULL);
+    if (!PyArg_ParseTuple(args,"ffy:pgtext", &x, &y, &string)) return(NULL);
 
     cpgtext(x,y,string);
 
@@ -1255,7 +1255,7 @@ PYF(pgptxt)
     float x = 0.0, y=0.0, angle = 0.0, fjust = 0.0;
     char *string = "ppgplot";
     
-    if (!PyArg_ParseTuple(args,"ffffs:pgptxt", &x, &y, 
+    if (!PyArg_ParseTuple(args,"ffffy:pgptxt", &x, &y, 
 						  &angle, &fjust, &string)) 
 		return(NULL);
 	
